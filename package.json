@@ -1,0 +1,23 @@
+{
+  "name": "desafio-inventos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasvieira94/desafio-inventos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasvieira94/desafio-inventos/issues"
+  },
+  "homepage": "https://github.com/lucasvieira94/desafio-inventos#readme",
+  "devDependencies": {
+    "serverless-offline": "^3.29.0"
+  }
+}
