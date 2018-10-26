@@ -19,5 +19,11 @@
   "homepage": "https://github.com/lucasvieira94/desafio-inventos#readme",
   "devDependencies": {
     "serverless-offline": "^3.29.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.344.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "uuid": "^3.3.2"
   }
 }
