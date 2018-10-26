@@ -1,6 +1,16 @@
 'use strict';
+const { saveReservationToDB, sendReservationEmail } = require('./utils');
 
-module.exports.hello = (event, context, callback) => {
+module.exports.minionStore = (event, context, callback) => {
+
+  // 1. render landing page
+
+  // 2. create a new reservation
+
+  // 3. save the reservation data to our database
+
+  // 4. send an email with the corresponding data from the reservation
+
   console.log(event.pathParameters.name);
 
     const reply = `Hello ${event.pathParameters.name}`;
@@ -13,6 +23,4 @@ module.exports.hello = (event, context, callback) => {
     };
 
   callback(null, response);
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
