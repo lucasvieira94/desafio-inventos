@@ -1,27 +1,18 @@
 {
-  "name": "desafio-inventos",
+  "name": "desafio-inventos-project",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lucasvieira94/desafio-inventos.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lucasvieira94/desafio-inventos/issues"
-  },
-  "homepage": "https://github.com/lucasvieira94/desafio-inventos#readme",
-  "devDependencies": {
-    "serverless-offline": "^3.29.0"
-  },
   "dependencies": {
     "aws-sdk": "^2.344.0",
+    "cheerio": "^1.0.0-rc.2",
+    "cherio": "^1.0.0-rc.2",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "uuid": "^3.3.2"

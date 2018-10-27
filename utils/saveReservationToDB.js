@@ -3,17 +3,16 @@ const AWS = require("aws-sdk");
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-module.exports = () => {
+module.exports = (name, email, phone) => {
   const date = JSON.stringify(new Date());
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Item: {
       id: uuid.v1(),
-      name:null,
-      email:null,
-      phone:null,
+      name: name,
+      email: email,
+      phone: phone,
       reservedAt: date
-      //add rest of the parameters from a reservation here
     }
   };
 

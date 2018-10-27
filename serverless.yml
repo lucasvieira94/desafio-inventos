@@ -11,9 +11,8 @@
 #
 # Happy Coding!
 
-service: desafio-inventos
-plugins:
-  - serverless-offline
+service: desafio-inventos # NOTE: update this with your service name
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -21,8 +20,8 @@ plugins:
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
   region: us-east-1
+  stage: dev
   environment:
     DYNAMODB_TABLE: minions-reservations
   iamRoleStatements:
@@ -38,6 +37,10 @@ provider:
 package:
   include:
     - utils/**
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -68,21 +71,16 @@ package:
 #    - exclude-me-dir/**
 
 functions:
-  minionStore:
-    handler: handler.minionStore
+  saveReservation:
+    handler: handler.saveReservation
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-    events:
-      - http:
-          path: message/{name}
-          method: get
-
+#    events:
 #      - http:
-#          path: reservation/create
+#          path: users/create
 #          method: get
-
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
