@@ -2,14 +2,23 @@
 
 const db = require("../db.js");
 
-module.exports.getReservation = async (event, context) => {
-  const reservation = 'Reserva';
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      reservation: reservation
-    }),
-  };
+module.exports.getReservation = (event, context, callback) => {
+  const reservation_id = event.pathParameters.id;
+  db.reservation
+    .findOne({
+      where: { id: reservation_id },
+      attributes: ["id", "name", "email", "phone"]
+    })
+    .then(reservation => {
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify({
+          reservation: reservation
+        })
+      };
+
+      callback(null, response);
+    });
 };
 
 module.exports.listReservations = (event, context, callback) => {

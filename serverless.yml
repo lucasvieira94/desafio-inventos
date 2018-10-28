@@ -87,7 +87,7 @@ functions:
     handler: reservations/read.getReservation
     events:
       - http:
-          path: reservation
+          path: reservation/{id}
           method: get
 
   listReservations:
