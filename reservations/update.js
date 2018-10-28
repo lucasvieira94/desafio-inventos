@@ -20,5 +20,13 @@ module.exports.updateReservation = (event, context, callback) => {
           reservation: reservationObject[0]
         })
       });
+    })
+    .catch(error => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: `There was an error updating your reservation with id: ${reservation_id}.`
+        })
+      })
     });
 };

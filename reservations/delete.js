@@ -12,5 +12,13 @@ module.exports.deleteReservation = (event, context, callback) => {
           deleted_number: deleted_number
         })
       });
+    })
+    .catch(error => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: `There was an error deleting your reservation with id: ${reservation_id}`
+        })
+      })
     });
 };

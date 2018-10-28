@@ -18,6 +18,14 @@ module.exports.getReservation = (event, context, callback) => {
       };
 
       callback(null, response);
+    })
+    .catch(error => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: `There was an error fetching your reservation with id: ${reservation_id}`
+        })
+      })
     });
 };
 
@@ -35,5 +43,13 @@ module.exports.listReservations = (event, context, callback) => {
       };
 
       callback(null, response);
+    })
+    .catch(error => {
+      callback(null, {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: `There was an error fetching your reservations.`
+        })
+      })
     });
 };
