@@ -1,5 +1,7 @@
 'use strict';
 
+const db = require("../db.js");
+
 module.exports.getReservation = async (event, context) => {
   const reservation = 'Reserva';
   return {
@@ -8,7 +10,21 @@ module.exports.getReservation = async (event, context) => {
       reservation: reservation
     }),
   };
+};
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+module.exports.listReservations = (event, context, callback) => {
+  db.reservation
+    .findAll({
+      attributes: ["id", "name", "email", "phone"]
+    })
+    .then(reservations => {
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify({
+          reservations: reservations
+        })
+      };
+
+      callback(null, response);
+    });
 };

@@ -37,7 +37,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-      
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -75,17 +75,26 @@ package:
 functions:
   saveReservation:
     handler: handler.saveReservation
+
   getLandingPage:
     handler: utils/landingPage.getLandingPage
     events:
       - http:
           path: landing_page
           method: get
+
   getReservation:
     handler: reservations/read.getReservation
     events:
       - http:
           path: reservation
+          method: get
+
+  listReservations:
+    handler: reservations/read.listReservations
+    events:
+      - http:
+          path: reservations
           method: get
 
   createReservation:
