@@ -37,9 +37,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-package:
-  include:
-    - utils/**
+      
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -65,10 +63,11 @@ package:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
+package:
+  include:
+    - reservations/**
+    - models/**
+    - utils/**
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**

@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports.getReservation = async (event, context) => {
-  const todo = 'Reserva';
+  const reservation = 'Reserva';
   return {
     statusCode: 200,
     body: JSON.stringify({
-      todo: todo
+      reservation: reservation
     }),
   };
 
