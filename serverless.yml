@@ -1,21 +1,4 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
-
 service: desafio-inventos # NOTE: update this with your service name
-
-# You can pin your service to only deploy with a specific Serverless version
-# Check out our docs for more details
-# frameworkVersion: "=X.X.X"
 
 plugins:
   - serverless-offline
@@ -25,6 +8,9 @@ provider:
   runtime: nodejs8.10
   region: us-east-1
   stage: dev
+# To secure desired routes -- do this later
+#  apiKeys:
+#    - todoAPI
   environment:
     DYNAMODB_TABLE: minions-reservations
   iamRoleStatements:
@@ -68,6 +54,7 @@ package:
     - reservations/**
     - models/**
     - utils/**
+    - mailer/**
 #  exclude:
 #    - exclude-me.js
 #    - exclude-me-dir/**
@@ -96,6 +83,7 @@ functions:
       - http:
           path: reservations
           method: get
+#          private: true
 
   createReservation:
     handler: reservations/create.createReservation
@@ -110,6 +98,7 @@ functions:
       - http:
           path: reservation/{id}
           method: delete
+#          private: true
 
   updateReservation:
     handler: reservations/update.updateReservation
@@ -117,6 +106,7 @@ functions:
       - http:
           path: reservation/{id}
           method: patch
+#          private: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

@@ -1,5 +1,6 @@
 const db = require('../db.js');
 const { saveReservationToDB } = require('../utils');
+const mailer = require('../mailer');
 
 module.exports.createReservation = (event, context, callback) => {
   const body = JSON.parse(event.body);
@@ -36,6 +37,31 @@ module.exports.createReservation = (event, context, callback) => {
       })
     })
   });
+
+  // generate an email using the data above
+  mailer
+    .generateContent(body)
+  // send the email
+    .then(content => mailer.sendEmail(content))
+    .then(message => {
+      // send a response
+      const response = {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: message
+        })
+      };
+
+      callback(null, response);
+    })
+    .catch(error => {
+      const response = {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: error
+        })
+      };
+    });
 
   saveReservationToDB(body.name, body.email, body.phone);
 };
