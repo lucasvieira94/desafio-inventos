@@ -1,13 +1,14 @@
 service: desafio-inventos # NOTE: update this with your service name
 
 plugins:
-  - serverless-offline
+  #- serverless-offline
 
 provider:
   name: aws
   runtime: nodejs8.10
   region: us-east-1
   stage: dev
+  timeout: 30
 # To secure desired routes -- do this later
 #  apiKeys:
 #    - todoAPI
@@ -29,8 +30,6 @@ provider:
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
 #      Action:
 #        - "s3:ListBucket"
 #      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
@@ -53,7 +52,7 @@ package:
   include:
     - reservations/**
     - models/**
-    - utils/**
+    - dynamoDb/**
     - mailer/**
 #  exclude:
 #    - exclude-me.js
@@ -64,11 +63,12 @@ functions:
     handler: handler.saveReservation
 
   getLandingPage:
-    handler: utils/landingPage.getLandingPage
+    handler: ./landingPage.getLandingPage
     events:
       - http:
           path: landing_page
           method: get
+          cors: true
 
   getReservation:
     handler: reservations/read.getReservation
@@ -76,6 +76,7 @@ functions:
       - http:
           path: reservation/{id}
           method: get
+          cors: true
 
   listReservations:
     handler: reservations/read.listReservations
@@ -83,6 +84,7 @@ functions:
       - http:
           path: reservations
           method: get
+          cors: true
 #          private: true
 
   createReservation:
@@ -91,6 +93,7 @@ functions:
       - http:
           path: reservation
           method: post
+          cors: true
 
   deleteReservation:
     handler: reservations/delete.deleteReservation
@@ -98,6 +101,7 @@ functions:
       - http:
           path: reservation/{id}
           method: delete
+          cors: true
 #          private: true
 
   updateReservation:
@@ -106,6 +110,7 @@ functions:
       - http:
           path: reservation/{id}
           method: patch
+          cors: true
 #          private: true
 
 #    The following are a few example events you can configure
@@ -140,6 +145,7 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
+
 
 # you can add CloudFormation resource templates here
 #resources:

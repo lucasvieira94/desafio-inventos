@@ -1,5 +1,5 @@
 'use strict';
-const { saveReservationToDB } = require('./utils');
+const { saveReservationToDB } = require('./dynamoDb');
 
 module.exports.saveReservation = async (event, context) => {
 
