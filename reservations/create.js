@@ -6,11 +6,6 @@ module.exports.createReservation = (event, context, callback) => {
   const body = JSON.parse(event.body);
   const { name, email, phone } = body;
 
-  console.log(body);
-  console.log(body.name);
-  console.log(body.email);
-  console.log(body.phone);
-
   if(!name || !email || !phone) {
     return callback(null, {
         statusCode: 500,
@@ -32,7 +27,7 @@ module.exports.createReservation = (event, context, callback) => {
      name: body.name,
      email: body.email,
      phone: body.phone,
-   }).then(console.log("called function to save reservation to db");)
+   })
    .then(reservation => {
      return callback(null, {
        statusCode: 200,
