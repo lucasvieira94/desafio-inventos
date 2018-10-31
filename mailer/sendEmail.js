@@ -16,8 +16,8 @@ module.exports = (content) => {
     });
     console.log("Created transporter!");
     // create recipient srtring
-    //let recipients = "";
-    //config.to.forEach(recipient => recipents += `${recipient}, `);
+    let recipients = "raquel@inventosdigitais.com.br";
+    config.to.forEach(recipient => recipents += `${recipient}, `);
     // define email options
     const mailOptions = {
       from: "minionStore@gmail.com",
